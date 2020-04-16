@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body {
+    background-color: rgb(246, 246, 246);
+}
+header {
+    position: fixed;
+    width: 100vw;
+    height: 3em;
+    box-shadow: 0 -5px 10px rgb(55,66,77);
+    background: linear-gradient(189deg,#6cc8e4 3%,#e8f9ff 98%);
+    z-index: 99;
+}
+.logoHeader{
+    position: fixed;
+    top: 0.5em;
+    left: 0.5em;
+    height: 2em;
+}
+footer {
+    position: fixed;
+    width: 100vw;
+    top: calc(100vh - 3em);
+    height: 3em;
+    box-shadow: 0 2px 10px rgb(55, 66, 77);
+    background: linear-gradient(89deg,#1697bf 3%,#68cef5 98%);
+    z-index: 99;
+}
+.content {
+    position: fixed;
+    top: 2.5em;
+}
+.formSignUp {
+    position: fixed;
+    top: 30vh;
+    left: 6vw;
+    width: 88vw;
+    height: 20vh;
+    background: linear-gradient(200deg,#eaf8fd 23%,#ffffff 78%);
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgb(138, 159, 180);
+    padding: 30px;
+}
+.inp {
+    width: 90%;
+    margin-left: 5%;
+    border: none;
+    border-bottom: 2px solid rgb(138, 159, 180);
+    text-align: center;
+    padding: 3px;
+    outline: none;
+    transition-duration: 500ms;
+    border-radius: 5px;
+    font-size: 1.2em;
+    color: #1697bf;
+    margin-bottom: 10px;
+    background-color: #eaf8fd;
+}
+.inp:focus {
+    border-bottom: 2px solid #1697bf;
+    box-shadow: 0 7px 15px rgb(138, 159, 180);
+}
+.btn {
+    width: 90%;
+    margin-left: 5%;
+    text-align: center;
+    border: none;
+    padding: 3px;
+    outline: none;
+    transition-duration: 500ms;
+    border-radius: 5px;
+    font-size: 1.2em;
+    color: rgb(255, 255, 255);
+    background: linear-gradient(89deg,#1697bf 3%,#68cef5 98%);
+    margin-bottom: 10px;
+}
