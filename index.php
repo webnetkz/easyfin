@@ -12,10 +12,21 @@
     </header>
         <div class="content">
             <nav>
-                
+                <ul>
+                    <li class="menuItem" id="invoice">Счет на оплату</li>
+                    <li class="menuItem" id="invoicex">Документы</li>
+                    <li class="menuItem">xxxxx xxxxxxxxx</li>
+                    <li class="menuItem">xxxxx xxxxxxxxx</li>
+                    <li class="menuItem">xxxxx xxxxxxxxx</li>
+                </ul>
             </nav>
+            <div class="container">
+
+            </div>
         </div>
     <footer>
     </footer>
+    <script src="public/js/main.js"></script>
+    <script src="public/js/newAgent.js"></script>
 </body>
 </html>

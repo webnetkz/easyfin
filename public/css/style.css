@@ -45,6 +45,104 @@ nav {
     top: 4em;
     bottom: 3em;
     width: 20vw;
-    border: 1px solid rgb(88, 88, 88);
+    border: 1px solid rgb(188, 188, 188);
     border-radius: 10px;
+}
+nav > ul {
+    padding: 15px 10px;
+}
+.menuItem {
+    list-style: none;
+    text-align: center;
+    color: rgb(235, 235, 235);
+    padding: 5px;
+    border-bottom: 1px solid rgb(105, 105, 105);
+    transition-duration: 500ms;
+}
+.menuItem:hover {
+    cursor: pointer;
+    background: rgb(79, 79, 79);
+    border-left: 3px solid #1697bf;
+}
+.menuItem:active {
+    background: rgb(255, 255, 255);
+    color: rgb(24, 24, 24);
+}
+.container {
+    position: fixed;
+    left: calc(2em + 20vw);
+    top: 4em;
+    bottom: 3em;
+    width: calc(100vw - 3.5em - 20vw);
+    border: 1px solid rgb(188, 188, 188);
+    border-radius: 10px;
+    padding: 1em;
+}
+.component {
+    animation: showComponentToLeft 500ms linear;
+    position: fixed;
+    left: calc(2.5em + 20vw);
+    top: 4.5em;
+    bottom: 3.5em;
+    width: calc(100vw - 4.5em - 20vw);
+    padding: 1em;
+    color: rgb(225, 225, 225);
+}
+@keyframes showComponentToLeft {
+    0% {
+        opacity: 0;
+        left: 100vw;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.title {
+    padding: 5px;
+}
+.titleLitle {
+    font-size: 0.7em;
+    margin-bottom: 5px;
+}
+button.btn {
+    float: right;
+    margin: 5px;
+    padding: 5px;
+    border: none;
+    background: linear-gradient(89deg,#1697bf 3%,#68cef5 98%);
+    outline: none;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    transition-duration: 500ms;
+}
+button.btn:hover {
+    box-shadow: 0 0 20px rgb(34, 32, 32);
+}
+button.btn:active {
+    box-shadow: 0 0 5px rgb(255, 255, 255);
+}
+hr {
+    margin-bottom: 2em;
+}
+.invoice {
+    border: 1px solid red;
+    height: 68vh;
+    padding: 1em;
+}
+select {
+    outline: none;
+    padding: 3px;
+    border-radius: 4px;
+    background-color: rgb(49, 49, 49);
+    border-color: rgb(188, 188, 188);
+    color: rgb(235, 235, 235);
+}
+option {
+    padding: 3px;
+}
+option:hover {
+    background-color: rgb(49, 49, 49);
 }
