@@ -1,3 +1,6 @@
+<?php
+    $go = 123;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

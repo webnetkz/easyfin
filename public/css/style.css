@@ -88,6 +88,9 @@ nav > ul {
     padding: 1em;
     color: rgb(225, 225, 225);
 }
+.show {
+    animation: showComponentToLeft 1s linear;
+}
 @keyframes showComponentToLeft {
     0% {
         opacity: 0;
