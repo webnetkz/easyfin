@@ -9,7 +9,7 @@
     <title>EasyFin</title>
     <link rel="stylesheet" href="public/css/style.css">
 </head>
-<body>
+<body id="body">
     <header>
         <img src="public/img/logo.png" alt="logotype" class="logoHeader">
     </header>
@@ -17,10 +17,7 @@
             <nav>
                 <ul>
                     <li class="menuItem" id="invoice">Счет на оплату</li>
-                    <li class="menuItem" id="invoicex">Документы</li>
-                    <li class="menuItem">xxxxx xxxxxxxxx</li>
-                    <li class="menuItem">xxxxx xxxxxxxxx</li>
-                    <li class="menuItem">xxxxx xxxxxxxxx</li>
+                    <li class="menuItem" id="docs">Документы</li>
                 </ul>
             </nav>
             <div class="container">
@@ -29,7 +26,8 @@
         </div>
     <footer>
     </footer>
-    <script src="public/js/main.js"></script>
+    <script src="public/js/invoice.js"></script>
     <script src="public/js/newAgent.js"></script>
+    <script src="public/js/docs.js"></script>
 </body>
 </html>
