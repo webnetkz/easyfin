@@ -180,6 +180,14 @@ option:hover {
     margin-bottom: 10px;
     border-bottom: 1px solid rgb(235, 235, 235);
 }
+.docItem:hover {
+    border-radius: 5px; background: rgb(77, 77, 77);
+    transition-duration: 900ms;
+}
+.docItemLink {
+    text-decoration :none;
+    color: rgb(235, 235, 235);
+}
 .docTableItem {
     padding: 5px;
     text-align: left;
