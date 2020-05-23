@@ -69,6 +69,11 @@ nav > ul {
     background: rgb(255, 255, 255);
     color: rgb(24, 24, 24);
 }
+.menuItemActive {
+    cursor: pointer;
+    background: rgb(79, 79, 79);
+    border-left: 3px solid #1697bf;
+}
 .container {
     position: fixed;
     left: calc(2em + 20vw);
@@ -165,4 +170,23 @@ option:hover {
     color: rgb(235, 235, 235);
     width: 150px;
     text-align: center;
+}
+
+
+.docItem {
+    display: flex;
+    justify-content: left;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgb(235, 235, 235);
+}
+.docTableItem {
+    padding: 5px;
+    text-align: left;
+}
+.docTableItem:first-child {
+    width: 80px;
+}
+.docTableItem {
+    width: 30%;
 }

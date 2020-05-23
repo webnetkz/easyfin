@@ -17,7 +17,9 @@ function getAllAgents() {
             // Событие при создании счета на оплату
             let invoice = document.querySelector('#invoice');
             invoice.addEventListener('click', () => {
-
+                    let docs = document.querySelector('#docs');
+                    docs.classList.remove('menuItemActive');
+                    invoice.classList.add('menuItemActive');
                     // Компонент счета на оплату
                     content.innerHTML = "<div class='component'>" +
                     "<form name='invoice'>" +
@@ -62,9 +64,9 @@ function getAllItems() {
 
     xhr.onreadystatechange = function() {
         if(xhr.readyState === 4 && xhr.status === 200) {
-            let resultQuery = xhr.responseText;
+            let resultQueryItems = xhr.responseText;
             // Разбить строку, разделителем ',' на элементы массива
-            resultQuery = resultQuery.split(',');
+            resultQueryItems = resultQueryItems.split(',');
 
             // Событие при создании счета на оплату
             let invoice = document.querySelector('#invoice');
@@ -74,11 +76,11 @@ function getAllItems() {
                     // Получение списка
                     let allAgents = document.querySelector('#allItems');
                     // Добавление всех услуг\товаров в список
-                    for(let i = 0; i < resultQuery.length && i != resultQuery.length -1; i++) {
-                        allAgents.innerHTML += "<option>"+resultQuery[i]+"</option>";     
+                    for(let i = 0; i < resultQueryItems.length && i != resultQueryItems.length -1; i++) {
+                        allAgents.innerHTML += "<option>"+resultQueryItems[i]+"</option>";     
                     }
                 }
-                setTimeout(hiddenF, 1000);
+                setTimeout(hiddenF, 500);
             });
         }
     }
