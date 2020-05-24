@@ -5,7 +5,7 @@
 function getAllAgents() {
     var xhr = new XMLHttpRequest();
 
-    xhr.open('GET', 'http://easyfin/app/querys/getAllAgents.php');
+    xhr.open('GET', '/app/querys/getAllAgents.php');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onreadystatechange = function() {
@@ -59,7 +59,7 @@ getAllAgents();
 function getAllItems() {
     var xhr = new XMLHttpRequest();
 
-    xhr.open('GET', 'http://easyfin/app/querys/getAllItems.php');
+    xhr.open('GET', '/app/querys/getAllItems.php');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onreadystatechange = function() {
@@ -99,7 +99,7 @@ function newInvoice() {
     
     
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'app/querys/invoice.php');
+        xhr.open('POST', '/app/querys/invoice.php');
     
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     

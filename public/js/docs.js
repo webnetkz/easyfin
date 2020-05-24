@@ -14,7 +14,7 @@ docs.addEventListener('click', () => {
         content.innerHTML = "<div class='component'><p class='title'>Все документы</p></div>";
         let component = document.querySelector('.component');
 
-        xhr.open('GET', 'http://easyfin/app/querys/getAllDocs.php');
+        xhr.open('GET', '/app/querys/getAllDocs.php');
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         xhr.onreadystatechange = function() {
