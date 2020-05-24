@@ -1,5 +1,36 @@
 <?php
 	
+	require_once '../dataBase/connectDB.php';
+	$id = trim($_GET['doc']);
+	$id = htmlspecialchars($id);
+
+	// Получение данных документа
+	$sql = 'SELECT * FROM INVOICE WHERE id ='.$id;
+	$result = $pdo->query($sql);
+	$result = $result->fetchAll(PDO::FETCH_ASSOC);
+	$items = $result[0]['items'];
+	$value = $result[0]['value_1'];
+	$agent = $result[0]['agent'];
+	
+	// Получение личных данных
+	$sqlMy = 'SELECT * FROM users';
+	$resultMy = $pdo->query($sqlMy);
+	$resultMy = $resultMy->fetchAll(PDO::FETCH_ASSOC);
+
+	// Получение данных агента
+	$sqlAgent = 'SELECT * FROM agents WHERE name = "'.$agent.'"';
+	$resultAgent = $pdo->query($sqlAgent);
+	$resultAgent = $resultAgent->fetchAll(PDO::FETCH_ASSOC);
+
+	// Получение данных услуги\товара
+	$sqlItems = 'SELECT * FROM items WHERE name = "'.$items.'"';
+	$resultItems = $pdo->query($sqlItems);
+	$resultItems = $resultItems->fetchAll(PDO::FETCH_ASSOC);
+		
+	$price = $resultItems[0]['price'] * (int)$value;
+
+    require_once '../libs/lineOfNumber.php';
+    $priceLine = lineOfNumber($price);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
@@ -139,12 +170,12 @@
 		<td style="border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=8 align="center" valign=top><b><font size=2>&#1050;&#1073;&#1077;</font></b></td>
 		</tr>
 	<tr>
-		<td style="border-left: 1px solid #000000" colspan=20 height="31" align="left" valign=top><b><font size=2>x2</font></b></td>
-		<td style="border-left: 1px solid #000000" colspan=10 rowspan=2 align="center" valign=middle><b><font size=2>x29</font></b></td>
-		<td style="border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=8 rowspan=2 align="center" valign=middle sdnum="1033;0;0"><b><font size=2>x30</font></b></td>
+		<td style="border-left: 1px solid #000000" colspan=20 height="31" align="left" valign=top><b><font size=2><?=$resultMy[0]['name'];?></font></b></td>
+		<td style="border-left: 1px solid #000000" colspan=10 rowspan=2 align="center" valign=middle><b><font size=2><?=$resultMy[0]['iik'];?></font></b></td>
+		<td style="border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=8 rowspan=2 align="center" valign=middle sdnum="1033;0;0"><b><font size=2><?=$resultMy[0]['kbe'];?></font></b></td>
 		</tr>
 	<tr>
-		<td style="border-left: 1px solid #000000" colspan=20 height="16" align="left" valign=top><font size=2>x1</font></td>
+		<td style="border-left: 1px solid #000000" colspan=20 height="16" align="left" valign=top><font size=2><?=$resultMy[0]['bin_iin'];?></font></td>
 		</tr>
 	<tr>
 		<td style="border-top: 1px solid #000000; border-left: 1px solid #000000" colspan=20 height="16" align="left" valign=top><font size=2>&#1041;&#1072;&#1085;&#1082; &#1073;&#1077;&#1085;&#1077;&#1092;&#1080;&#1094;&#1080;&#1072;&#1088;&#1072;:</font></td>
@@ -152,9 +183,9 @@
 		<td style="border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=10 align="center" valign=top><b><font size=2>&#1050;&#1086;&#1076; &#1085;&#1072;&#1079;&#1085;&#1072;&#1095;&#1077;&#1085;&#1080;&#1103; &#1087;&#1083;&#1072;&#1090;&#1077;&#1078;&#1072;</font></b></td>
 		</tr>
 	<tr>
-		<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan=20 height="16" align="left" valign=top><font size=2>x31</font></td>
-		<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan=8 align="center" valign=top><b><font size=2>x32</font></b></td>
-		<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=10 align="center" valign=top sdnum="1033;0;0"><b><font size=2>x33</font></b></td>
+		<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan=20 height="16" align="left" valign=top><font size=2><?=$resultMy[0]['bank'];?></font></td>
+		<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan=8 align="center" valign=top><b><font size=2><?=$resultMy[0]['bik'];?></font></b></td>
+		<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=10 align="center" valign=top sdnum="1033;0;0"><b><font size=2><?=$resultItems[0]['code_price'];?></font></b></td>
 		</tr>
 	<tr>
 		<td height="15" align="left"><br></td>
@@ -237,7 +268,7 @@
 		<td align="left"><br></td>
 	</tr>
 	<tr>
-		<td colspan=38 rowspan=2 height="30" align="left" valign=middle><b><font size=4>&#1057;&#1095;&#1077;&#1090; &#1085;&#1072; &#1086;&#1087;&#1083;&#1072;&#1090;&#1091; x34 &#1086;&#1090; x10</font></b></td>
+		<td colspan=38 rowspan=2 height="30" align="left" valign=middle><b><font size=4>&#1057;&#1095;&#1077;&#1090; &#1085;&#1072; &#1086;&#1087;&#1083;&#1072;&#1090;&#1091; <?=$result[0]['id'];?> &#1086;&#1090; <?=$result[0]['today'];?></font></b></td>
 		</tr>
 	<tr>
 		</tr>
@@ -286,7 +317,7 @@
 	</tr>
 	<tr>
 		<td colspan=4 height="49" align="left" valign=top><font size=2>&#1055;&#1086;&#1089;&#1090;&#1072;&#1074;&#1097;&#1080;&#1082;:</font></td>
-		<td colspan=34 align="left" valign=top><b><font size=2>x1, x2, x3, x4</font></b></td>
+		<td colspan=34 align="left" valign=top><b><font size=2><?=$resultMy[0]['bin_iin'];?>, <?=$resultMy[0]['name'];?>, <?=$resultMy[0]['adres'];?>, <?=$resultMy[0]['contacts'];?></font></b></td>
 		</tr>
 	<tr>
 		<td height="9" align="left"><br></td>
@@ -330,7 +361,7 @@
 	</tr>
 	<tr>
 		<td colspan=4 height="49" align="left" valign=top><font size=2>&#1055;&#1086;&#1082;&#1091;&#1087;&#1072;&#1090;&#1077;&#1083;&#1100;:</font></td>
-		<td colspan=34 align="left" valign=top><b><font size=2>x5, x6, x7, x8</font></b></td>
+		<td colspan=34 align="left" valign=top><b><font size=2><?=$resultAgent[0]['bin_iin'];?>, <?=$resultAgent[0]['name'];?>, <?=$resultAgent[0]['adres'];?>, <?=$resultAgent[0]['contacts'];?></font></b></td>
 		</tr>
 	<tr>
 		<td height="9" align="left"><br></td>
@@ -433,11 +464,11 @@
 		<td style="border-top: 1px solid #000000" align="left" valign=top><br></td>
 		<td style="border-top: 1px solid #000000" align="left" valign=top><br></td>
 		<td style="border-top: 1px solid #000000" align="left" valign=top><br></td>
-		<td style="border-top: 1px solid #000000; border-left: 1px solid #000000" colspan=11 align="left" valign=top>x11 &#1080;&#1083;&#1080; x20</td>
-		<td style="border-top: 1px solid #000000; border-left: 1px solid #000000" colspan=4 align="right" valign=top sdnum="1033;0;0.000">x13 &#1080;&#1083;&#1080; x22</td>
-		<td style="border-top: 1px solid #000000; border-left: 1px solid #000000" colspan=3 align="left" valign=top>x12 &#1080;&#1083;&#1080; x21</td>
-		<td style="border-top: 1px solid #000000; border-left: 1px solid #000000" colspan=6 align="right" valign=top sdnum="1033;0;#,##0.00">x14 &#1080;&#1083;&#1080; x23</td>
-		<td style="border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 2px solid #000000" colspan=6 align="right" valign=top sdnum="1033;0;#,##0.00">x17 &#1080;&#1083;&#1080; x24</td>
+		<td style="border-top: 1px solid #000000; border-left: 1px solid #000000" colspan=11 align="left" valign=top><?=$items;?></td>
+		<td style="border-top: 1px solid #000000; border-left: 1px solid #000000" colspan=4 align="right" valign=top sdnum="1033;0;0.000"><?=$value;?></td>
+		<td style="border-top: 1px solid #000000; border-left: 1px solid #000000" colspan=3 align="left" valign=top><?=$resultItems[0]['unit'];?></td>
+		<td style="border-top: 1px solid #000000; border-left: 1px solid #000000" colspan=6 align="right" valign=top sdnum="1033;0;#,##0.00"><?=$resultItems[0]['price'];?></td>
+		<td style="border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 2px solid #000000" colspan=6 align="right" valign=top sdnum="1033;0;#,##0.00"><?=$price;?></td>
 		<td align="left"><br></td>
 	</tr>
 	<tr>
@@ -511,7 +542,7 @@
 		<td align="right" valign=top><b><font size=2><br></font></b></td>
 		<td align="right" valign=top><b><font size=2><br></font></b></td>
 		<td align="right" valign=top><b><font size=2><br></font></b></td>
-		<td align="right" valign=top><b><font size=2>&#1048;&#1090;&#1086;&#1075;&#1086;:</font></b></td>
+		<td align="right" valign=top><b><font size=2>&#1048;&#1090;&#1086;&#1075;&#1086;:<?=$price;?></font></b></td>
 		<td colspan=6 align="right" valign=top sdnum="1033;0;#,##0.00"><b><font size=2><br></font></b></td>
 		<td align="left"><br></td>
 	</tr>
@@ -556,10 +587,10 @@
 		<td align="left"><br></td>
 	</tr>
 	<tr>
-		<td colspan=38 height="17" align="left"><font size=2>&#1042;&#1089;&#1077;&#1075;&#1086; &#1085;&#1072;&#1080;&#1084;&#1077;&#1085;&#1086;&#1074;&#1072;&#1085;&#1080;&#1081; , &#1085;&#1072; &#1089;&#1091;&#1084;&#1084;&#1091;  KZT</font></td>
+		<td colspan=38 height="17" align="left"><font size=2>&#1042;&#1089;&#1077;&#1075;&#1086; &#1085;&#1072;&#1080;&#1084;&#1077;&#1085;&#1086;&#1074;&#1072;&#1085;&#1080;&#1081; <?=$value;?>, &#1085;&#1072; &#1089;&#1091;&#1084;&#1084;&#1091; <?=$price;?> KZT</font></td>
 		</tr>
 	<tr>
-		<td colspan=36 height="17" align="left" valign=top><b><font size=2>&#1042;&#1089;&#1077;&#1075;&#1086; &#1082; &#1086;&#1087;&#1083;&#1072;&#1090;&#1077;: </font></b></td>
+		<td colspan=36 height="17" align="left" valign=top><b><font size=2>&#1042;&#1089;&#1077;&#1075;&#1086; &#1082; &#1086;&#1087;&#1083;&#1072;&#1090;&#1077;: <?=$priceLine;?></font></b></td>
 		<td align="left"><br></td>
 		<td align="left"><br></td>
 	</tr>
