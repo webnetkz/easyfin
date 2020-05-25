@@ -26,8 +26,6 @@
         </div>
     <footer>
     </footer>
-    <script src="public/js/invoice.js"></script>
-    <script src="public/js/newAgent.js"></script>
-    <script src="public/js/docs.js"></script>
+    <script src="public/js/main.js"></script>
 </body>
 </html>

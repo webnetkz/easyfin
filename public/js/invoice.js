@@ -1,8 +1,7 @@
-﻿let content = document.querySelector('.container');
-
-
+﻿var content = document.querySelector('.container');
 // Получение всех контрагентов
 function getAllAgents() {
+
     var xhr = new XMLHttpRequest();
 
     xhr.open('GET', '/app/querys/getAllAgents.php');
@@ -16,7 +15,7 @@ function getAllAgents() {
 
             // Событие при создании счета на оплату
             let invoice = document.querySelector('#invoice');
-            invoice.addEventListener('click', () => {
+
                     let docs = document.querySelector('#docs');
                     docs.classList.remove('menuItemActive');
                     invoice.classList.add('menuItemActive');
@@ -47,8 +46,6 @@ function getAllAgents() {
                     for(let i = 0; i < resultQuery.length && i != resultQuery.length -1; i++) {
                         allAgents.innerHTML += "<option>"+resultQuery[i]+"</option>";     
                     }
-            });
-
         }
     }
     xhr.send();
